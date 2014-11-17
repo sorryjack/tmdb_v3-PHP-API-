@@ -195,6 +195,13 @@ class TMDBv3{
 		} //movieTrailer
 
 
+	//jak adds - get review
+    public function movieReview($idMovie) {
+        $trailer = $this->movieInfo($idMovie,"reviews",false);
+        return $trailer;
+    } //movieReview
+    //-------
+    
 	/**
 	* movie Detail
 	* http://api.themoviedb.org/3/movie/$id
@@ -284,8 +291,20 @@ class TMDBv3{
 	* @param integer $page
 	*/
 	public function nowPlayingMovies($page=1) {
-		return $this->_call('movie/now-playing', 'page='.$page);
+		return $this->_call('movie/now_playing', 'page='.$page);
 	}
+
+    //jek adds popular, upcoming and top rated category----
+    public function popularMovies($page=1) {
+        return $this->_call('movie/popular', 'page='.$page);
+    }
+    public function upcomingMovies($page=1) {
+        return $this->_call('movie/upcoming', 'page='.$page);
+    }
+    public function topRatedMovies($page=1) {
+        return $this->_call('movie/top_rated', 'page='.$page);
+    }
+    //------------
 
 	/**
 	 * Makes the call to the API
